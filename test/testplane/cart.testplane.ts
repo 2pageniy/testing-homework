@@ -58,8 +58,10 @@ describe("Cart", () => {
             expect(invalidFields).toHaveLength(0);
         });
         it("Проверка сообщения об успешном оформлении", async ({browser}) => {
+            const cartSuccessMessage = await browser.$('.Cart-SuccessMessage');
             const successMessage = await browser.$('.Cart-SuccessMessage p').getText();
             expect(successMessage).toBe('Order #1 has been successfully completed.');
+            await cartSuccessMessage.assertView('cart-success-message-view');
         });
     });
 });
